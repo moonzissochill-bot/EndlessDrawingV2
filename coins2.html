@@ -40,7 +40,6 @@
             overflow-x: hidden;
         }
 
-        /* ------------------ 1. HEADER / NAVBAR ------------------ */
         header {
             display: flex;
             align-items: center;
@@ -95,12 +94,709 @@
             color: white;
             font-size: 14px;
             outline: none;
-            transition: all 0.2s;
-        }
-
-        .search-bar input:focus {
-            border-color: var(--text-sub);
-            background: #303030;
         }
 
         .search-icon-btn {
+            position: absolute;
+            right: 4px;
+            width: 36px;
+            height: 34px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-sub);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .upload-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: #272727;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #272727;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--tiktok-red);
+            background: #333;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 16px 80px;
+            flex: 1;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.15), rgba(37, 244, 238, 0.08));
+            border: 1px solid rgba(254, 44, 85, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .hero-text p {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .badge-save {
+            background: rgba(254, 44, 85, 0.2);
+            color: var(--tiktok-red);
+            border: 1px solid var(--tiktok-red);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .verification-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .verification-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-sub);
+        }
+
+        .input2 {
+            width: 100%;
+            padding: 12px 14px 12px 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: #161616;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .buttonwaw {
+            padding: 0 24px;
+            border-radius: 8px;
+            border: none;
+            background: var(--tiktok-red);
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .grid-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .grid-item:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .grid-item.selected {
+            border-color: var(--tiktok-red);
+            background: rgba(254, 44, 85, 0.05);
+            box-shadow: 0 0 15px rgba(254, 44, 85, 0.2);
+        }
+
+        .coin-image {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .coin-number {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .coin-number-euro {
+            font-size: 14px;
+            color: var(--text-sub);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .coin-number-perso {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .coin-number-euro-perso {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        .payment-methods-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .payment-methods-card p {
+            color: var(--text-sub);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 24px;
+            color: #d0d0d0;
+        }
+
+        .checkout-bar {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .total-payement {
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .total-price-display {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .recharger {
+            background: var(--tiktok-red);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(254, 44, 85, 0.3);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-paiement {
+            background: #1e1e1e;
+            width: 100%;
+            max-width: 460px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .resumer {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-sub);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .compte {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .compte2, .compte3 {
+            color: white;
+            font-weight: 600;
+        }
+
+        .ligne {
+            height: 1px;
+            background: var(--border-color);
+            margin: 16px 0;
+        }
+
+        .piece, .prix {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .piece2, .prix2 {
+            font-weight: 700;
+        }
+
+        .prix2 {
+            font-size: 22px;
+            color: var(--tiktok-red);
+        }
+
+        .paypal-box {
+            background: #161616;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .checkbox-container input {
+            margin-top: 4px;
+            accent-color: var(--tiktok-red);
+        }
+
+        .blabla {
+            font-size: 11px;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .help-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: #2b2b2b;
+            border: 1px solid var(--border-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .pay-button {
+            width: 100%;
+            height: 48px;
+            border-radius: 8px;
+            background: var(--tiktok-red);
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pay-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#">
+                <div class="logo-icon"><i class="fa-brands fa-tiktok"></i></div>
+                <span>TikTok</span>
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search accounts and videos">
+            <button class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="upload-box"><i class="fa-solid fa-plus"></i> Upload</a>
+            <div class="user-avatar">
+                <img id="nav-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=tiktok" alt="Avatar">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Get Coins to support creators</h1>
+                <p>Save up to 31% compared to in-app purchase with lower service fees!</p>
+            </div>
+            <span class="badge-save">Special Web Offer</span>
+        </div>
+
+        <div class="verification-card">
+            <h3>Target Account</h3>
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-at"></i>
+                    <input class="input2" id="username-input" type="text" value="tiktok">
+                </div>
+                <button class="buttonwaw" id="btn-verify">
+                    <span class="spinner" id="verify-spinner"></span>
+                    <span id="verify-text">Verify</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Select Coin Package</h2>
+        </div>
+
+        <div class="grid">
+            <button class="grid-item selected" onclick="selectPackage(this, 70, 0.85)">
+                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                <span class="coin-number">70</span>
+                <span class="coin-number-euro">€ 0.85</span>
+            </button>
+            <button class="grid-item" onclick="selectPackage(this, 350, 4.15)">
+                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                <span class="coin-number">350</span>
+                <span class="coin-number-euro">€ 4.15</span>
+            </button>
+            <button class="grid-item" onclick="selectPackage(this, 700, 8.29)">
+                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                <span class="coin-number">700</span>
+                <span class="coin-number-euro">€ 8.29</span>
+            </button>
+            <button class="grid-item" onclick="selectPackage(this, 1400, 16.49)">
+                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                <span class="coin-number">1,400</span>
+                <span class="coin-number-euro">€ 16.49</span>
+            </button>
+        </div>
+
+        <div class="checkout-bar">
+            <div>
+                <span class="total-payement">Total Amount</span>
+                <div class="total-price-display">€ <span id="total-amount">0.85</span></div>
+            </div>
+            <button class="recharger" onclick="openPaymentModal()">Recharge Now</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="payment-modal">
+        <div class="popup-paiement">
+            <div class="resumer">
+                <span>Order Summary</span>
+                <button class="close-modal" onclick="closeModal('payment-modal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="compte">
+                <span>Account</span>
+                <span class="compte2" id="account-name">@tiktok</span>
+            </div>
+            <div class="ligne"></div>
+            <div class="piece">
+                <span id="coin-quantity-display">70 Coins</span>
+                <span class="piece2" id="coin-price-display">€ 0.85</span>
+            </div> 
+            <div class="prix">
+                <span>Total</span>
+                <span class="prix2" id="coin-price2-display">€ 0.85</span>
+            </div>
+            <div class="ligne"></div>
+            <div class="paypal-box">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <input type="radio" checked>
+                    <i class="fa-brands fa-paypal" style="color: #0079C1; font-size: 20px;"></i>
+                    <span style="font-weight: 600; font-size: 14px;">PayPal</span>
+                </div>
+                <span style="font-size: 12px; color: var(--text-sub);">******r12</span>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="accept-checkbox" onchange="togglePayButton()">
+                <label class="blabla" for="accept-checkbox">
+                    By checking this box, I accept the <b>Coins Policy</b> and request immediate delivery of Coins.
+                </label>
+            </div>
+            <button class="pay-button" id="btn-pay-now" disabled onclick="executePayment()">
+                <span class="spinner" id="pay-spinner"></span>
+                <span id="pay-text">Pay Now</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="popup-paiement" style="text-align: center;">
+            <i class="fa-solid fa-circle-check" style="font-size: 56px; color: #00e676; margin-bottom: 16px;"></i>
+            <h2 class="resumer" style="justify-content: center;">Payment Successful!</h2>
+            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 20px;">Coins are credited to your account.</p>
+            <button class="pay-button" onclick="closeModal('success-modal')">Done</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast-box">
+        <i class="fa-solid fa-circle-info" style="color: #25f4ee;"></i>
+        <span id="toast-message">Notification</span>
+    </div>
+
+    <script>
+        let selectedCoins = 70;
+        let selectedPrice = 0.85;
+        let currentUsername = 'tiktok';
+
+        document.getElementById('btn-verify').addEventListener('click', () => {
+            const val = document.getElementById('username-input').value.trim().replace(/^@/, '');
+            if (!val) {
+                showToast('Please enter a username');
+                return;
+            }
+            
+            const spinner = document.getElementById('verify-spinner');
+            const txt = document.getElementById('verify-text');
+            spinner.style.display = 'block';
+            txt.style.display = 'none';
+
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                txt.style.display = 'inline';
+                currentUsername = val;
+                document.getElementById('account-name').textContent = `@${val}`;
+                document.getElementById('nav-avatar').src = `https://api.dicebear.com/7.x/initials/svg?seed=${val}&backgroundColor=fe2c55,25f4ee`;
+                showToast(`Successfully verified @${val}`);
+            }, 600);
+        });
+
+        function selectPackage(element, coins, price) {
+            document.querySelectorAll('.grid-item').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedCoins = coins;
+            selectedPrice = price;
+            document.getElementById('total-amount').textContent = price.toFixed(2);
+        }
+
+        function openPaymentModal() {
+            document.getElementById('coin-quantity-display').textContent = `${selectedCoins.toLocaleString()} Coins`;
+            document.getElementById('coin-price-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
+            document.getElementById('coin-price2-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
+            document.getElementById('payment-modal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function togglePayButton() {
+            const isChecked = document.getElementById('accept-checkbox').checked;
+            document.getElementById('btn-pay-now').disabled = !isChecked;
+        }
+
+        function executePayment() {
+            const spinner = document.getElementById('pay-spinner');
+            const payText = document.getElementById('pay-text');
+            const btn = document.getElementById('btn-pay-now');
+
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            payText.style.display = 'none';
+
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                payText.style.display = 'inline';
+                btn.disabled = false;
+                closeModal('payment-modal');
+                document.getElementById('success-modal').classList.add('active');
+            }, 1200);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-box');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+    </script>
+</body>
+</html>
