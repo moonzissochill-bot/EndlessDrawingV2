@@ -55,28 +55,22 @@
         .logo a {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
             color: white;
             font-weight: 800;
             font-size: 22px;
         }
 
-        .logo-icon {
-            width: 34px;
-            height: 34px;
-            background: linear-gradient(45deg, var(--tiktok-cyan), var(--tiktok-red));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: black;
-            font-size: 18px;
+        /* OFFICIAL TIKTOK LOGO */
+        .tiktok-logo-img {
+            height: 32px;
+            width: auto;
         }
 
         .search-bar {
             flex: 1;
-            max-width: 480px;
+            max-width: 420px;
             margin: 0 20px;
             position: relative;
         }
@@ -98,9 +92,32 @@
             gap: 16px;
         }
 
+        /* HOME SCREEN PAYPAL BALANCE BADGE */
+        .header-paypal-balance {
+            background: rgba(0, 121, 193, 0.15);
+            border: 1px solid rgba(0, 230, 118, 0.4);
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .header-paypal-balance i {
+            color: #0079C1;
+            font-size: 16px;
+        }
+
+        .header-paypal-balance span.balance-amount {
+            color: #00e676;
+            font-weight: 800;
+        }
+
         .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             overflow: hidden;
             border: 2px solid var(--tiktok-red);
@@ -120,6 +137,29 @@
             margin: 0 auto;
             padding: 24px 16px 80px;
             flex: 1;
+        }
+
+        /* HERO BANNER WITH BALANCE SUMMARY */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.15), rgba(37, 244, 238, 0.08));
+            border: 1px solid rgba(254, 44, 85, 0.3);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .hero-text p {
+            color: var(--text-sub);
+            font-size: 14px;
         }
 
         /* VERIFICATION CARD */
@@ -151,7 +191,6 @@
             background: linear-gradient(45deg, var(--tiktok-cyan), var(--tiktok-red));
             box-shadow: 0 8px 24px rgba(254, 44, 85, 0.25);
             margin-bottom: 10px;
-            position: relative;
         }
 
         .big-avatar-frame img {
@@ -165,7 +204,7 @@
         .account-handle-title {
             font-size: 18px;
             font-weight: 800;
-            color: white;
+            color: #ffffff;
         }
 
         .input-container {
@@ -245,15 +284,18 @@
             margin-bottom: 8px;
         }
 
+        /* WHITE COIN NUMBERS */
         .coin-number {
             font-size: 22px;
             font-weight: 800;
+            color: #ffffff !important;
         }
 
         .coin-number-euro {
             font-size: 14px;
             color: var(--text-sub);
             font-weight: 600;
+            margin-top: 4px;
         }
 
         /* CHECKOUT BAR */
@@ -278,7 +320,7 @@
             cursor: pointer;
         }
 
-        /* MODAL & PAYPAL BALANCE */
+        /* MODAL */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -347,7 +389,7 @@
             font-weight: 800;
         }
 
-        /* PAYPAL BOX WITH $9,667,455 BALANCE DISPLAY */
+        /* PAYPAL BOX WITH $9,554,333.42 BALANCE */
         .paypal-box {
             background: #161616;
             border: 1px solid rgba(0, 121, 193, 0.4);
@@ -441,17 +483,30 @@
 </head>
 <body>
 
+    <!-- HEADER WITH OFFICIAL LOGO & HOME SCREEN PAYPAL BALANCE -->
     <header>
         <div class="logo">
             <a href="#">
-                <div class="logo-icon"><i class="fa-brands fa-tiktok"></i></div>
-                <span>TikTok</span>
+                <svg class="tiktok-logo-img" viewBox="0 0 512 512">
+                    <path fill="#25F4EE" d="M412 132c-34-22-54-58-54-98h-68v326c0 42-34 76-76 76s-76-34-76-76 34-76 76-76c8 0 16 2 24 4v-70c-8-2-16-2-24-2-82 0-148 66-148 148s66 148 148 148 148-66 148-148V198c36 26 80 40 126 40v-70c-28 0-54-12-76-36z"/>
+                    <path fill="#FE2C55" d="M404 124c-34-22-54-58-54-98h-68v326c0 42-34 76-76 76s-76-34-76-76 34-76 76-76c8 0 16 2 24 4v-70c-8-2-16-2-24-2-82 0-148 66-148 148s66 148 148 148 148-66 148-148V198c36 26 80 40 126 40v-70c-28 0-54-12-76-36z" transform="translate(-6, 6)"/>
+                    <path fill="#FFFFFF" d="M408 128c-34-22-54-58-54-98h-68v326c0 42-34 76-76 76s-76-34-76-76 34-76 76-76c8 0 16 2 24 4v-70c-8-2-16-2-24-2-82 0-148 66-148 148s66 148 148 148 148-66 148-148V198c36 26 80 40 126 40v-70c-28 0-54-12-76-36z"/>
+                </svg>
+                <span style="letter-spacing: -0.5px;">TikTok</span>
             </a>
         </div>
+
         <div class="search-bar">
             <input type="text" placeholder="Search accounts and videos">
         </div>
+
         <div class="nav-right">
+            <!-- PAYPAL BALANCE ON HOME SCREEN -->
+            <div class="header-paypal-balance" title="Available PayPal Balance">
+                <i class="fa-brands fa-paypal"></i>
+                <span>PayPal: <span class="balance-amount">$9,554,333.42</span></span>
+            </div>
+
             <div class="user-avatar">
                 <img id="nav-avatar" src="https://unavatar.io/tiktok/tiktok" alt="Avatar">
             </div>
@@ -460,6 +515,18 @@
 
     <div class="container">
         
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Get Coins to support creators</h1>
+                <p>Save up to 31% compared to in-app purchase with lower service fees!</p>
+            </div>
+            <div style="text-align: right;">
+                <span style="font-size: 12px; color: var(--text-sub);">Connected Wallet</span>
+                <div style="color: #00e676; font-weight: 800; font-size: 15px;">$9,554,333.42</div>
+            </div>
+        </div>
+
         <!-- TARGET ACCOUNT VERIFICATION WITH PROMINENT AVATAR -->
         <div class="verification-card">
             <div class="profile-display-box">
@@ -483,6 +550,7 @@
 
         <h2>Select Coin Package</h2>
 
+        <!-- COINS GRID WITH WHITE NUMBERS -->
         <div class="grid">
             <button class="grid-item selected" onclick="selectPackage(this, 70, 0.85)">
                 <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
@@ -503,6 +571,21 @@
                 <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
                 <span class="coin-number">1,400</span>
                 <span class="coin-number-euro">€ 16.49</span>
+            </button>
+            <button class="grid-item" onclick="selectPackage(this, 3500, 41.25)">
+                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                <span class="coin-number">3,500</span>
+                <span class="coin-number-euro">€ 41.25</span>
+            </button>
+            <button class="grid-item" onclick="selectPackage(this, 7000, 82.09)">
+                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                <span class="coin-number">7,000</span>
+                <span class="coin-number-euro">€ 82.09</span>
+            </button>
+            <button class="grid-item" onclick="selectPackage(this, 17500, 205.19)">
+                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                <span class="coin-number">17,500</span>
+                <span class="coin-number-euro">€ 205.19</span>
             </button>
         </div>
 
@@ -553,7 +636,7 @@
                     </div>
                 </div>
                 <div class="paypal-balance-badge">
-                    Balance: $9,667,455
+                    Balance: $9,554,333.42
                 </div>
             </div>
 
@@ -576,7 +659,7 @@
         <div class="popup-paiement" style="text-align: center;">
             <i class="fa-solid fa-circle-check" style="font-size: 56px; color: #00e676; margin-bottom: 16px;"></i>
             <h2 class="resumer" style="justify-content: center;">Payment Successful!</h2>
-            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 20px;">Coins have been sent using your PayPal balance ($9,667,455).</p>
+            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 20px;">Coins have been charged against your PayPal balance ($9,554,333.42).</p>
             <button class="pay-button" onclick="closeModal('success-modal')">Done</button>
         </div>
     </div>
@@ -597,11 +680,9 @@
 
             const realAvatarUrl = `https://unavatar.io/tiktok/${cleanUser}`;
             
-            // Set image sources
             document.getElementById('display-profile-pic').src = realAvatarUrl;
             document.getElementById('nav-avatar').src = realAvatarUrl;
             
-            // Set text handles
             currentUsername = cleanUser;
             document.getElementById('account-handle-display').textContent = `@${cleanUser}`;
             document.getElementById('modal-account-name').textContent = `@${cleanUser}`;
@@ -620,7 +701,7 @@
                 updateTikTokAvatar(inputVal);
                 spinner.style.display = 'none';
                 txt.style.display = 'inline';
-                showToast(`Fetched profile pic for @${currentUsername}`);
+                showToast(`Loaded profile for @${currentUsername}`);
             }, 500);
         });
 
