@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Coins: Buy & Recharge Coins to Send Gifts</title>
+    <!-- FontAwesome for TikTok Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #2a2a2a;
+            --tiktok-red: #fe2c55;
+            --tiktok-cyan: #25f4ee;
+            --tiktok-black: #000000;
+            --text-main: #ffffff;
+            --text-sub: #a6a6a6;
+            --gold-coin: #ffaa00;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* ------------------ 1. HEADER / NAVBAR ------------------ */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(45deg, var(--tiktok-cyan), var(--tiktok-red));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 18px;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 480px;
+            margin: 0 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 11px 45px 11px 16px;
+            border-radius: 92px;
+            border: 1px solid var(--border-color);
+            background: #272727;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--text-sub);
+            background: #303030;
+        }
+
+        .search-icon-btn {
+            position: absolute;
+            right: 4px;
+            width: 36px;
+            height: 34px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-sub);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .upload-button .upload-link {
+            text-decoration: none;
+        }
+
+        .upload-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: #272727;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .upload-box:hover {
+            background: #333333;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #272727;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: #333;
+        }
+
+        .user-avatar-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--tiktok-red);
+            position: relative;
+            background: #333;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ------------------ MAIN CONTAINER ------------------ */
+        .container {
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 16px 80px;
+            flex: 1;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.15), rgba(37, 244, 238, 0.08));
+            border: 1px solid rgba(254, 44, 85, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(90deg, #fff, #ddd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .badge-save {
+            background: rgba(254, 44, 85, 0.2);
+            color: var(--tiktok-red);
+            border: 1px solid var(--tiktok-red);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        /* ------------------ USER VERIFICATION BAR ------------------ */
+        .verification-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .verification-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-sub);
+        }
+
+        .input2 {
+            width: 100%;
+            padding: 12px 14px 12px 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: #161616;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .input2:focus {
+            border-color: var(--tiktok-red);
+        }
+
+        .buttonwaw {
+            padding: 0 24px;
+            border-radius: 8px;
+            border: none;
+            background: var(--tiktok-red);
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .buttonwaw:hover {
+            opacity: 0.9;
+        }
+
+        /* ------------------ COINS GRID SECTION ------------------ */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .grid-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            outline: none;
+        }
+
+        .grid-item:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .grid-item.selected {
+            border-color: var(--tiktok-red);
+            background: rgba(254, 44, 85, 0.05);
+            box-shadow: 0 0 15px rgba(254, 44, 85, 0.2);
+        }
+
+        .coin-icon-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .coin-image, .coin-image-perso {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        .coin-number {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .coin-number-euro {
+            font-size: 14px;
+            color: var(--text-sub);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .coin-number-perso {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .coin-number-euro-perso {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        /* ------------------ PAYMENT METHODS ------------------ */
+        .payment-methods-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .payment-methods-card p {
+            color: var(--text-sub);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .payment-icons i {
+            font-size: 24px;
+            color: #d0d0d0;
+        }
+
+        /* ------------------ SUMMARY & RECHARGE BAR ------------------ */
+        .checkout-bar {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .total-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .total-payement {
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .total-price-display {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .recharger {
+            background: var(--tiktok-red);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(254, 44, 85, 0.3);
+        }
+
+        .recharger:hover {
+            transform: scale(1.02);
+            opacity: 0.95;
+        }
+
+        /* ------------------ MODALS / POPUPS ------------------ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-paiement {
+            background: #1e1e1e;
+            width: 100%;
+            max-width: 460px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .popup-paiement {
+            transform: translateY(0);
+        }
+
+        .resumer {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-sub);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .compte {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .compte2, .compte3 {
+            color: white;
+            font-weight: 600;
+        }
+
+        .ligne {
+            height: 1px;
+            background: var(--border-color);
+            margin: 16px 0;
+        }
+
+        .piece, .prix {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .piece2, .prix2 {
+            font-weight: 700;
+        }
+
+        .prix2 {
+            font-size: 22px;
+            color: var(--tiktok-red);
+        }
+
+        .modepaiement {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-bottom: 12px;
+        }
+
+        .gerer {
+            color: var(--tiktok-cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .paypal-box {
+            background: #161616;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .paypal-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .checkbox-container input {
+            margin-top: 4px;
+            accent-color: var(--tiktok-red);
+        }
+
+        .blabla {
+            font-size: 11px;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .help-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: #2b2b2b;
+            border: 1px solid var(--border-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .pay-button-container {
+            flex: 1;
+        }
+
+        .pay-button {
+            width: 100%;
+            height: 48px;
+            border-radius: 8px;
+            background: var(--tiktok-red);
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: opacity 0.2s;
+        }
+
+        .pay-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ------------------ SPINNER & TOAST ------------------ */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s ease-in-out infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            padding: 12px 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success i { color: #00e676; }
+        .toast.error i { color: var(--tiktok-red); }
+
+        /* Custom Input Modal */
+        .custom-input-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .custom-input-box input {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: #141414;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVIGATION BAR -->
+    <header>
+        <div class="logo">
+            <a href="#">
+                <div class="logo-icon"><i class="fa-brands fa-tiktok"></i></div>
+                <span>TikTok</span>
+            </a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search accounts and videos">
+            <button class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="nav-right">
+            <div class="upload-button">
+                <a href="#" class="upload-link">
+                    <div class="upload-box">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Upload</span>
+                    </div>
+                </a>
+            </div>
+
+            <a href="#" class="icon-btn" title="Messages"><i class="fa-regular fa-paper-plane"></i></a>
+            <a href="#" class="icon-btn" title="Inbox"><i class="fa-regular fa-comment-dots"></i></a>
+            
+            <div class="user-avatar-container">
+                <div class="user-avatar" id="nav-avatar-box">
+                    <img id="nav-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=TikTokUser" alt="Avatar">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Get Coins to support creators</h1>
+                <p>Save up to 31% compared to in-app purchase with lower service fees!</p>
+            </div>
+            <span class="badge-save">Special Web Offer</span>
+        </div>
+
+        <!-- 2. USERNAME VERIFICATION -->
+        <div class="verification-card">
+            <h3>Target Account</h3>
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-at"></i>
+                    <input class="input2" id="username-input" type="text" placeholder="Enter TikTok username (e.g. tiktok)" value="tiktok">
+                </div>
+                <button class="buttonwaw" id="btn-verify">
+                    <span class="spinner" id="verify-spinner"></span>
+                    <span id="verify-text">Verify</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. COINS SELECTION GRID -->
+        <div class="section-header">
+            <h2>Select Coin Package</h2>
+            <span style="font-size: 13px; color: var(--text-sub);">1 Coin ≈ €0.0118</span>
+        </div>
+
+        <div class="grid">
+
+            <!-- 70 Coins -->
+            <button class="grid-item selected" onclick="selectPackage(this, 70, 0.85)">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                </div>
+                <span class="coin-number">70</span>
+                <span class="coin-number-euro">€ 0.85</span>
+            </button>
+
+            <!-- 350 Coins -->
+            <button class="grid-item" onclick="selectPackage(this, 350, 4.15)">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                </div>
+                <span class="coin-number">350</span>
+                <span class="coin-number-euro">€ 4.15</span>
+            </button>
+
+            <!-- 700 Coins -->
+            <button class="grid-item" onclick="selectPackage(this, 700, 8.29)">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                </div>
+                <span class="coin-number">700</span>
+                <span class="coin-number-euro">€ 8.29</span>
+            </button>
+
+            <!-- 1400 Coins -->
+            <button class="grid-item" onclick="selectPackage(this, 1400, 16.49)">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                </div>
+                <span class="coin-number">1,400</span>
+                <span class="coin-number-euro">€ 16.49</span>
+            </button>
+
+            <!-- 3500 Coins -->
+            <button class="grid-item" onclick="selectPackage(this, 3500, 41.25)">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                </div>
+                <span class="coin-number">3,500</span>
+                <span class="coin-number-euro">€ 41.25</span>
+            </button>
+
+            <!-- 7000 Coins -->
+            <button class="grid-item" onclick="selectPackage(this, 7000, 82.09)">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                </div>
+                <span class="coin-number">7,000</span>
+                <span class="coin-number-euro">€ 82.09</span>
+            </button>
+
+            <!-- 17500 Coins -->
+            <button class="grid-item" onclick="selectPackage(this, 17500, 205.19)">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
+                </div>
+                <span class="coin-number">17,500</span>
+                <span class="coin-number-euro">€ 205.19</span>
+            </button>
+
+            <!-- Custom Coins -->
+            <button id="custom-case" class="grid-item" onclick="openCustomModal()">
+                <div class="coin-icon-wrapper">
+                    <svg class="coin-image-perso" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#25F4EE"/><circle cx="24" cy="24" r="16" fill="#00C4BD"/><text x="24" y="29" font-size="20" font-weight="900" text-anchor="middle" fill="#005B58">+</text></svg>
+                </div>
+                <span id="custom-text" class="coin-number-perso">Custom</span>
+                <span id="custom-description" class="coin-number-euro-perso">Large amounts supported</span>
+            </button>
+
+        </div>
+
+        <!-- 4. PAYMENT METHODS SUPPORTED -->
+        <div class="payment-methods-card">
+            <p>Supported Payment Methods</p>
+            <div class="payment-icons">
+                <i class="fa-brands fa-cc-visa"></i>
+                <i class="fa-brands fa-cc-mastercard"></i>
+                <i class="fa-brands fa-cc-amex"></i>
+                <i class="fa-brands fa-cc-paypal"></i>
+                <i class="fa-brands fa-apple-pay"></i>
+            </div>
+        </div>
+
+        <!-- 5. CHECKOUT RECHARGE BAR -->
+        <div class="checkout-bar">
+            <div class="total-info">
+                <span class="total-payement">Total Amount</span>
+                <div class="total-price-display">€ <span id="total-amount">0.85</span></div>
+            </div>
+            <button id="recharge-button" class="recharger" onclick="openPaymentModal()">Recharge Now</button>
+        </div>
+
+    </div>
+
+    <!-- PAYMENT MODAL -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="popup-paiement">
+            <div class="resumer">
+                <span>Order Summary</span>
+                <button class="close-modal" onclick="closeModal('payment-modal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="compte">
+                <span>Account</span>
+                <span class="compte2" id="account-name">@tiktok</span>
+            </div>
+            <div class="compte">
+                <span>Target Receiver</span>
+                <span class="compte3" id="sender-name">rappel.pourtoii</span>
+            </div>
+
+            <div class="ligne"></div>
+
+            <div class="piece">
+                <span id="coin-quantity-display">70 Coins</span>
+                <span class="piece2" id="coin-price-display">€ 0.85</span>
+            </div> 
+
+            <div class="prix">
+                <span>Total</span>
+                <span class="prix2" id="coin-price2-display">€ 0.85</span>
+            </div>
+
+            <div class="ligne"></div>
+
+            <div class="modepaiement">
+                <span>Payment Method</span>
+                <a href="#" class="gerer">Manage</a>
+            </div>
+            
+            <div class="paypal-box">
+                <div class="paypal-left">
+                    <input type="radio" checked name="pay-method" accent-color="#fe2c55">
+                    <i class="fa-brands fa-paypal" style="color: #0079C1; font-size: 20px;"></i>
+                    <span style="font-weight: 600; font-size: 14px;">PayPal</span>
+                </div>
+                <span style="font-size: 12px; color: var(--text-sub);">******r12</span>
+            </div>
+
+            <div class="checkbox-container">
+                <input class="checkbox" type="checkbox" id="accept-checkbox" onchange="togglePayButton()">
+                <label class="blabla" for="accept-checkbox">
+                    By checking this box, I accept the <b>Coins Policy</b> and request immediate delivery of Coins to my account. I acknowledge that I forfeit my right of withdrawal once Coins are credited. <br>Country: <b>France</b>
+                </label>
+            </div>
+
+            <div class="button-container">
+                <button class="help-button"><i class="fa-regular fa-circle-question"></i></button>
+                <div class="pay-button-container">
+                    <button class="pay-button" id="btn-pay-now" disabled onclick="executePayment()">
+                        <span class="spinner" id="pay-spinner"></span>
+                        <span id="pay-text">Pay Now</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM COINS MODAL -->
+    <div class="modal-overlay" id="custom-modal">
+        <div class="popup-paiement">
+            <div class="resumer">
+                <span>Custom Coins</span>
+                <button class="close-modal" onclick="closeModal('custom-modal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">Enter the exact number of coins you would like to purchase (Min: 30, Max: 2,500,000).</p>
+            
+            <div class="custom-input-box">
+                <input type="number" id="custom-coin-input" placeholder="e.g. 5000" min="30" max="2500000" oninput="calculateCustomPrice()">
+                <div style="font-size: 14px; color: var(--text-sub);">
+                    Estimated Total: <b style="color: white;">€ <span id="custom-calculated-price">0.00</span></b>
+                </div>
+            </div>
+
+            <button class="pay-button" style="margin-top: 12px;" onclick="applyCustomCoins()">Confirm Custom Package</button>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="popup-paiement" style="text-align: center;">
+            <i class="fa-solid fa-circle-check" style="font-size: 56px; color: #00e676; margin-bottom: 16px;"></i>
+            <h2 class="resumer" style="justify-content: center;">Payment Successful!</h2>
+            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 20px;">
+                Coins are currently being credited to <b style="color: white;" id="success-account">@tiktok</b>. Delivery usually takes 1–5 minutes.
+            </p>
+            <button class="pay-button" onclick="closeModal('success-modal')">Done</button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast-box">
+        <i class="fa-solid fa-circle-info"></i>
+        <span id="toast-message">Notification</span>
+    </div>
+
+    <!-- JAVASCRIPT AUTOMATION LOGIC -->
+    <script>
+        // State management
+        let selectedCoins = 70;
+        let selectedPrice = 0.85;
+        let currentUsername = 'tiktok';
+        const ratePerCoin = 0.0118;
+
+        // AUTOMATED TIKTOK AVATAR FETCHER
+        async function fetchTikTokAvatar(username) {
+            const avatarImg = document.getElementById('nav-avatar');
+            const verifySpinner = document.getElementById('verify-spinner');
+            const verifyText = document.getElementById('verify-text');
+
+            verifySpinner.style.display = 'block';
+            verifyText.style.display = 'none';
+
+            try {
+                // Try TikTok OEMbed API via proxy
+                const tiktokUrl = encodeURIComponent(`https://www.tiktok.com/@${username}`);
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent('https://www.tiktok.com/oembed?url=' + tiktokUrl)}`;
+
+                const res = await fetch(proxyUrl);
+                const data = await res.json();
+                const oembed = JSON.parse(data.contents);
+
+                if (oembed && oembed.thumbnail_url) {
+                    avatarImg.src = oembed.thumbnail_url;
+                    showToast(`Verified: ${oembed.author_name} (@${username})`, 'success');
+                } else {
+                    throw new Error("Avatar not found in oembed");
+                }
+            } catch (err) {
+                // FALLBACK: Dynamic UI Avatar Generator with initial
+                const fallbackAvatar = `https://api.dicebear.com/7.x/initials/svg?seed=${username}&backgroundColor=fe2c55,25f4ee,000000`;
+                avatarImg.src = fallbackAvatar;
+                showToast(`Account @${username} set (Generated avatar)`, 'success');
+            } finally {
+                verifySpinner.style.display = 'none';
+                verifyText.style.display = 'inline';
+                currentUsername = username;
+                document.getElementById('account-name').textContent = `@${username}`;
+            }
+        }
+
+        // Verify button click listener
+        document.getElementById('btn-verify').addEventListener('click', () => {
+            const val = document.getElementById('username-input').value.trim().replace(/^@/, '');
+            if (!val) {
+                showToast('Please enter a valid TikTok username', 'error');
+                return;
+            }
+            fetchTikTokAvatar(val);
+        });
+
+        // Package selection
+        function selectPackage(element, coins, price) {
+            document.querySelectorAll('.grid-item').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+
+            selectedCoins = coins;
+            selectedPrice = price;
+
+            document.getElementById('total-amount').textContent = price.toFixed(2);
+        }
+
+        // Custom modal controls
+        function openCustomModal() {
+            document.getElementById('custom-modal').classList.add('active');
+        }
+
+        function calculateCustomPrice() {
+            const coins = parseInt(document.getElementById('custom-coin-input').value) || 0;
+            const price = coins * ratePerCoin;
+            document.getElementById('custom-calculated-price').textContent = price.toFixed(2);
+        }
+
+        function applyCustomCoins() {
+            const coins = parseInt(document.getElementById('custom-coin-input').value);
+            if (!coins || coins < 30) {
+                showToast('Minimum custom purchase is 30 coins', 'error');
+                return;
+            }
+
+            const price = parseFloat((coins * ratePerCoin).toFixed(2));
+            selectedCoins = coins;
+            selectedPrice = price;
+
+            document.getElementById('total-amount').textContent = price.toFixed(2);
+            document.getElementById('custom-text').textContent = coins.toLocaleString();
+            document.getElementById('custom-description').textContent = `€ ${price.toFixed(2)}`;
+
+            document.querySelectorAll('.grid-item').forEach(el => el.classList.remove('selected'));
+            document.getElementById('custom-case').classList.add('selected');
+
+            closeModal('custom-modal');
+        }
+
+        // Payment Modal & Workflow
+        function openPaymentModal() {
+            document.getElementById('coin-quantity-display').textContent = `${selectedCoins.toLocaleString()} Coins`;
+            document.getElementById('coin-price-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
+            document.getElementById('coin-price2-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
+            document.getElementById('payment-modal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function togglePayButton() {
+            const isChecked = document.getElementById('accept-checkbox').checked;
+            document.getElementById('btn-pay-now').disabled = !isChecked;
+        }
+
+        function executePayment() {
+            const spinner = document.getElementById('pay-spinner');
+            const payText = document.getElementById('pay-text');
+            const btn = document.getElementById('btn-pay-now');
+
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            payText.style.display = 'none';
+
+            // Simulate server payment execution
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                payText.style.display = 'inline';
+                btn.disabled = false;
+
+                closeModal('payment-modal');
+                document.getElementById('success-account').textContent = `@${currentUsername}`;
+                document.getElementById('success-modal').classList.add('active');
+            }, 1800);
+        }
+
+        // Toast Helper
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast-box');
+            const msgSpan = document.getElementById('toast-message');
+            msgSpan.textContent = message;
+
+            toast.className = `toast show ${type}`;
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initial avatar fetch on page load
+        window.addEventListener('load', () => {
+            fetchTikTokAvatar('tiktok');
+        });
+    </script>
+</body>
+</html>
