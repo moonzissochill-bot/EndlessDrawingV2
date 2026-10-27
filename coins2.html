@@ -228,7 +228,7 @@
             gap: 8px;
         }
 
-        /* HOME SCREEN BALANCE BANNER BELOW VERIFY */
+        /* DYNAMIC HOME SCREEN PAYPAL BALANCE BANNER */
         .home-balance-card {
             background: linear-gradient(135deg, rgba(0, 121, 193, 0.15), rgba(0, 230, 118, 0.1));
             border: 1px solid rgba(0, 230, 118, 0.4);
@@ -267,6 +267,7 @@
             font-size: 22px;
             font-weight: 800;
             color: #00e676;
+            transition: color 0.3s ease;
         }
 
         /* GRID */
@@ -412,7 +413,7 @@
             font-weight: 800;
         }
 
-        /* PAYPAL BOX WITH $9,554,333.42 BALANCE */
+        /* PAYPAL BOX WITH DYNAMIC BALANCE */
         .paypal-box {
             background: #161616;
             border: 1px solid rgba(0, 121, 193, 0.4);
@@ -579,7 +580,7 @@
             </div>
         </div>
 
-        <!-- HOME SCREEN PAYPAL BALANCE BANNER (BELOW VERIFY) -->
+        <!-- HOME SCREEN PAYPAL BALANCE BANNER (DECREASES ON PAYMENT) -->
         <div class="home-balance-card">
             <div class="home-balance-left">
                 <i class="fa-brands fa-paypal"></i>
@@ -588,7 +589,7 @@
                     <div class="name">Primary Account (******r12)</div>
                 </div>
             </div>
-            <div class="home-balance-value">$9,554,333.42</div>
+            <div class="home-balance-value" id="home-paypal-balance">$9,554,333.42</div>
         </div>
 
         <h2>Select Coin Package</h2>
@@ -674,7 +675,7 @@
 
             <div class="ligne"></div>
 
-            <!-- PAYPAL METHOD & BALANCE DISPLAY -->
+            <!-- PAYPAL METHOD & DYNAMIC BALANCE DISPLAY -->
             <div class="paypal-box">
                 <div class="paypal-left">
                     <input type="radio" checked accent-color="#fe2c55">
@@ -684,7 +685,7 @@
                         <div style="font-size: 11px; color: var(--text-sub);">Primary Account</div>
                     </div>
                 </div>
-                <div class="paypal-balance-badge">
+                <div class="paypal-balance-badge" id="modal-paypal-balance-badge">
                     Balance: $9,554,333.42
                 </div>
             </div>
@@ -728,7 +729,10 @@
         <div class="popup-paiement" style="text-align: center;">
             <i class="fa-solid fa-circle-check" style="font-size: 56px; color: #00e676; margin-bottom: 16px;"></i>
             <h2 class="resumer" style="justify-content: center;">Payment Successful!</h2>
-            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 20px;">Coins have been successfully charged against your PayPal balance ($9,554,333.42).</p>
+            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 20px;">
+                Coins sent to <b style="color: white;" id="success-target-user">@tiktok</b>.<br>
+                Remaining PayPal Balance: <b style="color: #00e676;" id="success-remaining-balance">$9,554,333.42</b>
+            </p>
             <button class="pay-button" onclick="closeModal('success-modal')">Done</button>
         </div>
     </div>
@@ -738,10 +742,23 @@
     </div>
 
     <script>
+        // GLOBAL STATE & BALANCE INITIALIZATION
+        let currentBalance = 9554333.42;
         let selectedCoins = 70;
         let selectedPrice = 0.85;
         let currentUsername = 'tiktok';
         const ratePerCoin = 0.0118;
+        const eurToUsdRate = 1.08; // Currency conversion factor
+
+        function formatUSD(amount) {
+            return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function renderBalanceUI() {
+            const formatted = formatUSD(currentBalance);
+            document.getElementById('home-paypal-balance').textContent = formatted;
+            document.getElementById('modal-paypal-balance-badge').textContent = `Balance: ${formatted}`;
+        }
 
         // REAL TIKTOK AVATAR FETCHER
         function updateTikTokAvatar(username) {
@@ -818,6 +835,7 @@
             document.getElementById('coin-quantity-display').textContent = `${selectedCoins.toLocaleString()} Coins`;
             document.getElementById('coin-price-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
             document.getElementById('coin-price2-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
+            renderBalanceUI();
             document.getElementById('payment-modal').classList.add('active');
         }
 
@@ -830,20 +848,37 @@
             document.getElementById('btn-pay-now').disabled = !isChecked;
         }
 
+        // EXECUTE PAYMENT AND DEDUCT BALANCE
         function executePayment() {
             const spinner = document.getElementById('pay-spinner');
             const payText = document.getElementById('pay-text');
             const btn = document.getElementById('btn-pay-now');
+
+            const costInUsd = selectedPrice * eurToUsdRate;
+
+            if (currentBalance < costInUsd) {
+                showToast('Insufficient PayPal balance');
+                return;
+            }
 
             btn.disabled = true;
             spinner.style.display = 'block';
             payText.style.display = 'none';
 
             setTimeout(() => {
+                // Deduct cost from global balance
+                currentBalance -= costInUsd;
+                renderBalanceUI();
+
                 spinner.style.display = 'none';
                 payText.style.display = 'inline';
                 btn.disabled = false;
+                
                 closeModal('payment-modal');
+
+                // Update Success Screen
+                document.getElementById('success-target-user').textContent = `@${currentUsername}`;
+                document.getElementById('success-remaining-balance').textContent = formatUSD(currentBalance);
                 document.getElementById('success-modal').classList.add('active');
             }, 1200);
         }
@@ -854,6 +889,9 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
+
+        // Initialize display
+        renderBalanceUI();
     </script>
 </body>
 </html>
