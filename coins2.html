@@ -3,895 +3,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Coins: Buy & Recharge Coins</title>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Exchange</title>
     <style>
         :root {
+            --tiktok-pink: #fe2c55;
             --bg-dark: #121212;
-            --bg-card: #1e1e1e;
-            --bg-card-hover: #2a2a2a;
-            --tiktok-red: #fe2c55;
-            --tiktok-cyan: #25f4ee;
+            --surface-dark: #1c1c1e;
+            --surface-light: #2c2c2e;
             --text-main: #ffffff;
-            --text-sub: #a6a6a6;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            -webkit-tap-highlight-color: transparent;
+            --text-secondary: #8e8e93;
         }
 
         body {
-            background-color: var(--bg-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
             color: var(--text-main);
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 390px;
+            height: 100%;
+            max-height: 844px;
+            background-color: #121212;
+            border-radius: 40px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* HEADER */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 24px;
-            background-color: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: white;
-            font-weight: 800;
-            font-size: 22px;
-        }
-
-        .tiktok-logo-img {
-            height: 32px;
-            width: auto;
-        }
-
-        .search-bar {
-            flex: 1;
-            max-width: 420px;
-            margin: 0 20px;
             position: relative;
+            border: 8px solid #2a2a2a;
         }
 
-        .search-bar input {
-            width: 100%;
-            padding: 11px 45px 11px 16px;
-            border-radius: 92px;
-            border: 1px solid var(--border-color);
-            background: #272727;
-            color: white;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid var(--tiktok-red);
-            background: #222;
-        }
-
-        .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* CONTAINER */
-        .container {
-            max-width: 960px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 24px 16px 80px;
-            flex: 1;
-        }
-
-        /* HERO BANNER */
-        .hero-banner {
-            background: linear-gradient(135deg, rgba(254, 44, 85, 0.15), rgba(37, 244, 238, 0.08));
-            border: 1px solid rgba(254, 44, 85, 0.3);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin-bottom: 24px;
+        .header {
+            padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            font-size: 17px;
+            font-weight: 500;
         }
 
-        .hero-text h1 {
-            font-size: 24px;
-            font-weight: 800;
+        .balance-card {
+            background: var(--surface-dark);
+            margin: 16px;
+            padding: 18px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #2c2c2e;
+        }
+
+        .balance-title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .balance-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
             margin-bottom: 4px;
         }
 
-        .hero-text p {
-            color: var(--text-sub);
-            font-size: 14px;
-        }
-
-        /* VERIFICATION CARD */
-        .verification-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
+        .balance-sub {
+            font-size: 11px;
+            color: var(--text-secondary);
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        /* PROMINENT AVATAR ABOVE USERNAME */
-        .profile-display-box {
+        .section-label {
+            padding: 0 20px 8px 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .user-input-box {
+            margin: 0 16px 16px 16px;
+            background: var(--surface-dark);
+            border: 1px solid #2c2c2e;
+            border-radius: 12px;
+            padding: 12px 16px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            margin-bottom: 18px;
+            justify-content: space-between;
         }
 
-        .big-avatar-frame {
-            width: 96px;
-            height: 96px;
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            padding: 3px;
-            background: linear-gradient(45deg, var(--tiktok-cyan), var(--tiktok-red));
-            box-shadow: 0 8px 24px rgba(254, 44, 85, 0.25);
-            margin-bottom: 10px;
+            background: #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .big-avatar-frame img {
+        .avatar img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
-            background: #111;
         }
 
-        .account-handle-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .input-container {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .input-wrapper {
-            position: relative;
-            flex: 1;
-        }
-
-        .input-wrapper i {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-sub);
-        }
-
-        .input2 {
-            width: 100%;
-            padding: 12px 14px 12px 40px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: #161616;
-            color: white;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .buttonwaw {
-            padding: 0 24px;
-            border-radius: 8px;
+        .username-input {
+            background: transparent;
             border: none;
-            background: var(--tiktok-red);
-            color: white;
-            font-weight: 700;
+            color: var(--text-main);
             font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* DYNAMIC HOME SCREEN PAYPAL BALANCE BANNER */
-        .home-balance-card {
-            background: linear-gradient(135deg, rgba(0, 121, 193, 0.15), rgba(0, 230, 118, 0.1));
-            border: 1px solid rgba(0, 230, 118, 0.4);
-            border-radius: 12px;
-            padding: 16px 24px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .home-balance-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .home-balance-left i {
-            font-size: 28px;
-            color: #0079C1;
-        }
-
-        .home-balance-left .title {
-            font-size: 14px;
-            color: var(--text-sub);
             font-weight: 600;
+            outline: none;
+            width: 100%;
         }
 
-        .home-balance-left .name {
-            font-size: 16px;
-            font-weight: 800;
-            color: white;
-        }
-
-        .home-balance-value {
-            font-size: 22px;
-            font-weight: 800;
-            color: #00e676;
-            transition: color 0.3s ease;
-        }
-
-        /* GRID */
-        .grid {
+        .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 20px 0 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 0 16px;
+            margin-bottom: 16px;
         }
 
-        .grid-item {
-            background: var(--bg-card);
-            border: 2px solid var(--border-color);
+        .package-card {
+            background: var(--surface-dark);
+            border: 1px solid #2c2c2e;
             border-radius: 12px;
-            padding: 20px 16px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .package-card.selected {
+            border-color: var(--tiktok-pink);
+            background: rgba(254, 44, 85, 0.05);
+        }
+
+        .package-coins {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .package-price {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .coin-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .custom-prompt {
+            margin: 0 16px;
+            padding: 14px 16px;
+            background: var(--surface-dark);
+            border: 1px solid #2c2c2e;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .grid-item.selected {
-            border-color: var(--tiktok-red);
-            background: rgba(254, 44, 85, 0.05);
-            box-shadow: 0 0 15px rgba(254, 44, 85, 0.2);
+        .footer-container {
+            margin-top: auto;
+            padding: 16px 20px 24px 20px;
+            background: #121212;
         }
 
-        .coin-image, .coin-image-perso {
-            width: 44px;
-            height: 44px;
-            margin-bottom: 8px;
-            object-fit: contain;
+        .disclaimer {
+            font-size: 10px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            text-align: center;
+            margin-bottom: 16px;
         }
 
-        /* WHITE COIN NUMBERS */
-        .coin-number, .coin-number-perso {
-            font-size: 22px;
-            font-weight: 800;
-            color: #ffffff !important;
-        }
-
-        .coin-number-euro, .coin-number-euro-perso {
-            font-size: 14px;
-            color: var(--text-sub);
+        .exchange-btn {
+            width: 100%;
+            background-color: var(--tiktok-pink);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
             font-weight: 600;
-            margin-top: 4px;
+            cursor: pointer;
             text-align: center;
         }
 
-        .coin-number-perso {
-            font-size: 18px;
+        /* Custom Keypad Bottom Sheet Modal */
+        .keypad-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #1c1c1e;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 20px 20px 30px 20px;
+            box-sizing: border-box;
+            display: none;
+            flex-direction: column;
+            z-index: 30;
+            border-top: 1px solid #333;
         }
 
-        /* CHECKOUT BAR */
-        .checkout-bar {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
+        .keypad-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
-        .recharger {
-            background: var(--tiktok-red);
-            color: white;
-            border: none;
-            padding: 14px 40px;
-            font-size: 16px;
+        .keypad-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .keypad-display {
+            font-size: 26px;
             font-weight: 700;
-            border-radius: 8px;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .keypad-usd {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .keypad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .keypad-btn {
+            background: #2c2c2e;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-align: center;
             cursor: pointer;
         }
 
-        /* MODAL */
-        .modal-overlay {
-            position: fixed;
+        .keypad-btn:active {
+            background: #3a3a3c;
+        }
+
+        .keypad-btn.action-btn {
+            background: var(--tiktok-pink);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Success Screen Overlay */
+        .success-overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
+            background: #121212;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            z-index: 40;
+            text-align: center;
+        }
+
+        .success-icon-large {
+            width: 80px;
+            height: 80px;
+            background: #2fe680;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .popup-paiement {
-            background: #1e1e1e;
-            width: 100%;
-            max-width: 460px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            padding: 28px;
-        }
-
-        .resumer {
-            font-size: 20px;
-            font-weight: 800;
+            font-size: 40px;
+            color: #000;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--text-sub);
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .ligne {
-            height: 1px;
-            background: var(--border-color);
-            margin: 16px 0;
-        }
-
-        .piece, .prix {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 16px;
+        .success-title {
+            font-size: 22px;
+            font-weight: 700;
             margin-bottom: 8px;
         }
 
-        .prix2 {
-            font-size: 22px;
-            color: var(--tiktok-red);
-            font-weight: 800;
-        }
-
-        /* PAYPAL BOX WITH DYNAMIC BALANCE */
-        .paypal-box {
-            background: #161616;
-            border: 1px solid rgba(0, 121, 193, 0.4);
-            border-radius: 10px;
-            padding: 14px 16px;
+        .success-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
+            justify-content: center;
+            gap: 6px;
         }
 
-        .paypal-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .paypal-balance-badge {
-            background: rgba(0, 230, 118, 0.15);
-            color: #00e676;
-            border: 1px solid rgba(0, 230, 118, 0.3);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .checkbox-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            align-items: flex-start;
-        }
-
-        .blabla {
-            font-size: 11px;
-            color: var(--text-sub);
-            line-height: 1.4;
-        }
-
-        .pay-button {
+        .receipt-card {
             width: 100%;
-            height: 48px;
-            border-radius: 8px;
-            background: var(--tiktok-red);
-            color: white;
-            font-weight: 700;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
+            background: var(--surface-dark);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+            margin-bottom: 20px;
+            border: 1px solid #2c2c2e;
+            box-sizing: border-box;
         }
 
-        .pay-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .spinner {
-            width: 18px;
-            height: 18px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.8s linear infinite;
-            display: none;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .custom-input-box {
+        .receipt-row {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .receipt-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .receipt-label {
+            color: var(--text-secondary);
+        }
+
+        .promo-banner {
+            width: 100%;
+            background: var(--surface-dark);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
             gap: 12px;
-            margin: 16px 0;
+            text-align: left;
+            margin-bottom: 30px;
+            border: 1px solid #2c2c2e;
+            box-sizing: border-box;
         }
 
-        .custom-input-box input {
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: #141414;
-            color: white;
-            font-size: 16px;
-            outline: none;
+        .promo-text h4 {
+            margin: 0 0 2px 0;
+            font-size: 13px;
         }
 
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: rgba(30, 30, 30, 0.95);
-            border: 1px solid var(--border-color);
-            padding: 12px 24px;
-            border-radius: 30px;
-            z-index: 3000;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+        .promo-text p {
+            margin: 0;
+            font-size: 11px;
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER WITH OFFICIAL LOGO -->
-    <header>
-        <div class="logo">
-            <a href="#">
-                <svg class="tiktok-logo-img" viewBox="0 0 512 512">
-                    <path fill="#25F4EE" d="M412 132c-34-22-54-58-54-98h-68v326c0 42-34 76-76 76s-76-34-76-76 34-76 76-76c8 0 16 2 24 4v-70c-8-2-16-2-24-2-82 0-148 66-148 148s66 148 148 148 148-66 148-148V198c36 26 80 40 126 40v-70c-28 0-54-12-76-36z"/>
-                    <path fill="#FE2C55" d="M404 124c-34-22-54-58-54-98h-68v326c0 42-34 76-76 76s-76-34-76-76 34-76 76-76c8 0 16 2 24 4v-70c-8-2-16-2-24-2-82 0-148 66-148 148s66 148 148 148 148-66 148-148V198c36 26 80 40 126 40v-70c-28 0-54-12-76-36z" transform="translate(-6, 6)"/>
-                    <path fill="#FFFFFF" d="M408 128c-34-22-54-58-54-98h-68v326c0 42-34 76-76 76s-76-34-76-76 34-76 76-76c8 0 16 2 24 4v-70c-8-2-16-2-24-2-82 0-148 66-148 148s66 148 148 148 148-66 148-148V198c36 26 80 40 126 40v-70c-28 0-54-12-76-36z"/>
-                </svg>
-                <span style="letter-spacing: -0.5px;">TikTok</span>
-            </a>
+<div class="phone-frame">
+    <!-- Main Interface -->
+    <div id="mainView" style="display: flex; flex-direction: column; height: 100%;">
+        <div class="header">
+            <span>&lt;</span>
+            <span>Exchange</span>
+            <span>?</span>
         </div>
 
-        <div class="search-bar">
-            <input type="text" placeholder="Search accounts and videos">
-        </div>
-
-        <div class="nav-right">
-            <div class="user-avatar">
-                <img id="nav-avatar" src="https://unavatar.io/tiktok/tiktok" alt="Avatar">
+        <div class="balance-card">
+            <div class="balance-title">TikTok Coin Balance</div>
+            <div class="balance-amount" id="balanceDisplay">$999,591,987.68</div>
+            <div class="balance-sub">
+                <span>($319,189.68)</span>
+                <span>($2,356,852,641)</span>
             </div>
         </div>
-    </header>
 
-    <div class="container">
+        <div class="section-label">TikTok username</div>
+        <div class="user-input-box">
+            <div class="user-info">
+                <div class="avatar" id="avatarContainer">
+                    <img id="userAvatar" src="https://www.tiktok.com/favicon.ico" alt="avatar" onerror="this.src='https://www.tiktok.com/favicon.ico'">
+                </div>
+                <input type="text" id="usernameInput" class="username-input" value="@Anshu" onchange="updateProfile(this.value)">
+            </div>
+            <span style="color: var(--text-secondary); cursor: pointer;" onclick="clearUsername()">✕</span>
+        </div>
+
+        <div class="section-label">Exchange earnings for Coins</div>
+        <div class="packages-grid">
+            <div class="package-card" onclick="selectPkg(250, this)">
+                <div class="package-coins">
+                    <svg class="coin-icon" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FFD700" stroke="#DAA520" stroke-width="4"/><circle cx="50" cy="50" r="36" fill="#FFC800"/><path d="M58 32 C 58 32, 48 30, 44 40 L 44 62 C 42 60, 38 60, 35 62 C 30 65, 30 72, 35 75 C 40 78, 46 75, 46 68 L 46 44 C 52 48, 58 48, 58 48 Z" fill="#25F4EE"/><path d="M56 30 C 56 30, 46 28, 42 38 L 42 60 C 40 58, 36 58, 33 60 C 28 63, 28 70, 33 73 C 38 76, 44 73, 44 66 L 44 42 C 50 46, 56 46, 56 46 Z" fill="#FE2C55"/><path d="M57 31 C 57 31, 47 29, 43 39 L 43 61 C 41 59, 37 59, 34 61 C 29 64, 29 71, 34 74 C 39 77, 45 74, 45 67 L 45 43 C 51 47, 57 47, 57 47 Z" fill="#111111"/></svg>
+                    250
+                </div>
+                <div class="package-price">$3.03</div>
+            </div>
+            <div class="package-card" onclick="selectPkg(500, this)">
+                <div class="package-coins">
+                    <svg class="coin-icon" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FFD700" stroke="#DAA520" stroke-width="4"/><circle cx="50" cy="50" r="36" fill="#FFC800"/><path d="M58 32 C 58 32, 48 30, 44 40 L 44 62 C 42 60, 38 60, 35 62 C 30 65, 30 72, 35 75 C 40 78, 46 75, 46 68 L 46 44 C 52 48, 58 48, 58 48 Z" fill="#25F4EE"/><path d="M56 30 C 56 30, 46 28, 42 38 L 42 60 C 40 58, 36 58, 33 60 C 28 63, 28 70, 33 73 C 38 76, 44 73, 44 66 L 44 42 C 50 46, 56 46, 56 46 Z" fill="#FE2C55"/><path d="M57 31 C 57 31, 47 29, 43 39 L 43 61 C 41 59, 37 59, 34 61 C 29 64, 29 71, 34 74 C 39 77, 45 74, 45 67 L 45 43 C 51 47, 57 47, 57 47 Z" fill="#111111"/></svg>
+                    500
+                </div>
+                <div class="package-price">$6.07</div>
+            </div>
+            <div class="package-card selected" onclick="selectPkg(15000, this)">
+                <div class="package-coins">
+                    <svg class="coin-icon" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FFD700" stroke="#DAA520" stroke-width="4"/><circle cx="50" cy="50" r="36" fill="#FFC800"/><path d="M58 32 C 58 32, 48 30, 44 40 L 44 62 C 42 60, 38 60, 35 62 C 30 65, 30 72, 35 75 C 40 78, 46 75, 46 68 L 46 44 C 52 48, 58 48, 58 48 Z" fill="#25F4EE"/><path d="M56 30 C 56 30, 46 28, 42 38 L 42 60 C 40 58, 36 58, 33 60 C 28 63, 28 70, 33 73 C 38 76, 44 73, 44 66 L 44 42 C 50 46, 56 46, 56 46 Z" fill="#FE2C55"/><path d="M57 31 C 57 31, 47 29, 43 39 L 43 61 C 41 59, 37 59, 34 61 C 29 64, 29 71, 34 74 C 39 77, 45 74, 45 67 L 45 43 C 51 47, 57 47, 57 47 Z" fill="#111111"/></svg>
+                    15,000
+                </div>
+                <div class="package-price">$182.04</div>
+            </div>
+        </div>
+
+        <div class="custom-prompt" onclick="openKeypad()">
+            <span id="customText">Enter a custom number or amount</span>
+            <span>▾</span>
+        </div>
+
+        <div class="footer-container">
+            <div class="disclaimer">
+                Coins obtained through this exchange are subject to our Virtual Items Policy. Since you are accepting your Coins, they are non-refundable.
+            </div>
+            <button class="exchange-btn" onclick="triggerSuccess()">Exchange</button>
+        </div>
+    </div>
+
+    <!-- Custom Dial Pad Bottom Sheet Modal -->
+    <div class="keypad-sheet" id="keypadSheet">
+        <div class="keypad-header">
+            <span class="keypad-title">Number of Coins</span>
+            <span style="color: var(--text-secondary); cursor: pointer;" onclick="closeKeypad()">✕</span>
+        </div>
+        <div class="keypad-display" id="keypadDisplay">0</div>
+        <div class="keypad-usd" id="keypadUsd">$0.00</div>
+
+        <div class="keypad-grid">
+            <button class="keypad-btn" onclick="pressKey('1')">1</button>
+            <button class="keypad-btn" onclick="pressKey('2')">2</button>
+            <button class="keypad-btn" onclick="pressKey('3')">3</button>
+            <button class="keypad-btn" onclick="pressKey('4')">4</button>
+            <button class="keypad-btn" onclick="pressKey('5')">5</button>
+            <button class="keypad-btn" onclick="pressKey('6')">6</button>
+            <button class="keypad-btn" onclick="pressKey('7')">7</button>
+            <button class="keypad-btn" onclick="pressKey('8')">8</button>
+            <button class="keypad-btn" onclick="pressKey('9')">9</button>
+            <button class="keypad-btn" onclick="pressKey('All')">All</button>
+            <button class="keypad-btn" onclick="pressKey('0')">0</button>
+            <button class="keypad-btn" onclick="pressKey('000')">000</button>
+            <button class="keypad-btn" onclick="pressKey('backspace')">⌫</button>
+            <button class="keypad-btn action-btn" style="grid-column: span 2;" onclick="confirmKeypad()">✓</button>
+        </div>
+    </div>
+
+    <!-- Success Screen Overlay -->
+    <div class="success-overlay" id="successView">
+        <div class="success-icon-large">✓</div>
+        <div class="success-title">Exchange Completed!</div>
+        <div class="success-subtitle">
+            You exchanged for 
+            <svg class="coin-icon" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FFD700" stroke="#DAA520" stroke-width="4"/><circle cx="50" cy="50" r="36" fill="#FFC800"/><path d="M58 32 C 58 32, 48 30, 44 40 L 44 62 C 42 60, 38 60, 35 62 C 30 65, 30 72, 35 75 C 40 78, 46 75, 46 68 L 46 44 C 52 48, 58 48, 58 48 Z" fill="#25F4EE"/><path d="M56 30 C 56 30, 46 28, 42 38 L 42 60 C 40 58, 36 58, 33 60 C 28 63, 28 70, 33 73 C 38 76, 44 73, 44 66 L 44 42 C 50 46, 56 46, 56 46 Z" fill="#FE2C55"/><path d="M57 31 C 57 31, 47 29, 43 39 L 43 61 C 41 59, 37 59, 34 61 C 29 64, 29 71, 34 74 C 39 77, 45 74, 45 67 L 45 43 C 51 47, 57 47, 57 47 Z" fill="#111111"/></svg>
+            <span id="exchangedAmount">1,000,000</span> Coins
+        </div>
+
+        <div class="receipt-card">
+            <div class="receipt-row">
+                <span class="receipt-label">Recipient</span>
+                <span id="receiptUser">@Anshu</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Coins Exchanged</span>
+                <span id="receiptCoins">1,000,000 Coins</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Deducted Amount</span>
+                <span id="receiptDeducted">$12,136.00</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">Time</span>
+                <span id="timestamp">9/5/2020, 09:53:12</span>
+            </div>
+        </div>
+
+        <div class="promo-banner">
+            <div class="promo-text">
+                <h4>Start gifter level</h4>
+                <p>Send your first Gift to begin your journey and unlock more reward level up.</p>
+            </div>
+        </div>
+
+        <button class="exchange-btn" onclick="resetApp()">← Go back</button>
+    </div>
+</div>
+
+<script>
+    let selectedCoins = 1000000;
+    let currentInputString = "1000000";
+
+    function updateProfile(handle) {
+        let cleanHandle = handle.replace('@', '').trim();
+        if(cleanHandle.length > 0) {
+            document.getElementById('userAvatar').src = `https://unavatar.io/tiktok/${cleanHandle}`;
+            document.getElementById('receiptUser').innerText = '@' + cleanHandle;
+        }
+    }
+
+    function clearUsername() {
+        document.getElementById('usernameInput').value = '';
+        document.getElementById('usernameInput').focus();
+    }
+
+    function selectPkg(coins, el) {
+        document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedCoins = coins;
+        currentInputString = coins.toString();
+        document.getElementById('customText').innerText = selectedCoins.toLocaleString() + " Coins";
+    }
+
+    function openKeypad() {
+        document.getElementById('keypadSheet').style.display = 'flex';
+        updateKeypadDisplay();
+    }
+
+    function closeKeypad() {
+        document.getElementById('keypadSheet').style.display = 'none';
+    }
+
+    function pressKey(key) {
+        if (key === 'backspace') {
+            currentInputString = currentInputString.slice(0, -1);
+            if (currentInputString === '') currentInputString = '0';
+        } else if (key === 'All') {
+            currentInputString = '82132560'; // Max balance mock
+        } else {
+            if (currentInputString === '0') {
+                currentInputString = key;
+            } else {
+                currentInputString += key;
+            }
+        }
+        updateKeypadDisplay();
+    }
+
+    function updateKeypadDisplay() {
+        let val = parseInt(currentInputString) || 0;
+        document.getElementById('keypadDisplay').innerText = val.toLocaleString();
+        let usd = (val * 0.012136).toFixed(2);
+        document.getElementById('keypadUsd').innerText = '$' + parseFloat(usd).toLocaleString();
+    }
+
+    function confirmKeypad() {
+        selectedCoins = parseInt(currentInputString) || 0;
+        document.getElementById('customText').innerText = selectedCoins > 0 ? selectedCoins.toLocaleString() + " Coins" : "Enter a custom number or amount";
+        closeKeypad();
+    }
+
+    function triggerSuccess() {
+        let user = document.getElementById('usernameInput').value || '@Anshu';
+        document.getElementById('receiptUser').innerText = user.startsWith('@') ? user : '@' + user;
+        document.getElementById('exchangedAmount').innerText = selectedCoins.toLocaleString();
+        document.getElementById('receiptCoins').innerText = selectedCoins.toLocaleString() + ' Coins';
         
-        <!-- HERO BANNER -->
-        <div class="hero-banner">
-            <div class="hero-text">
-                <h1>Get Coins to support creators</h1>
-                <p>Save up to 31% compared to in-app purchase with lower service fees!</p>
-            </div>
-            <span style="background: rgba(254,44,85,0.2); color: var(--tiktok-red); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 13px;">Special Web Offer</span>
-        </div>
+        let estCost = (selectedCoins * 0.012136).toFixed(2);
+        document.getElementById('receiptDeducted').innerText = '$' + parseFloat(estCost).toLocaleString();
 
-        <!-- TARGET ACCOUNT VERIFICATION WITH PROMINENT AVATAR -->
-        <div class="verification-card">
-            <div class="profile-display-box">
-                <div class="big-avatar-frame">
-                    <img id="display-profile-pic" src="https://unavatar.io/tiktok/tiktok" alt="Profile Picture" onError="this.src='https://api.dicebear.com/7.x/initials/svg?seed=tiktok'">
-                </div>
-                <div class="account-handle-title" id="account-handle-display">@tiktok</div>
-            </div>
+        document.getElementById('mainView').style.display = 'none';
+        document.getElementById('successView').style.display = 'flex';
+    }
 
-            <div class="input-container">
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-at"></i>
-                    <input class="input2" id="username-input" type="text" placeholder="Enter username" value="tiktok">
-                </div>
-                <button class="buttonwaw" id="btn-verify">
-                    <span class="spinner" id="verify-spinner"></span>
-                    <span id="verify-text">Verify Profile</span>
-                </button>
-            </div>
-        </div>
+    function resetApp() {
+        document.getElementById('successView').style.display = 'none';
+        document.getElementById('mainView').style.display = 'flex';
+    }
 
-        <!-- HOME SCREEN PAYPAL BALANCE BANNER (DECREASES ON PAYMENT) -->
-        <div class="home-balance-card">
-            <div class="home-balance-left">
-                <i class="fa-brands fa-paypal"></i>
-                <div>
-                    <div class="title">PayPal Connected Balance</div>
-                    <div class="name">Primary Account (******r12)</div>
-                </div>
-            </div>
-            <div class="home-balance-value" id="home-paypal-balance">$9,554,333.42</div>
-        </div>
+    updateProfile('Anshu');
+</script>
 
-        <h2>Select Coin Package</h2>
-
-        <!-- COINS GRID WITH WHITE NUMBERS & CUSTOM PACKAGE -->
-        <div class="grid">
-            <button class="grid-item selected" onclick="selectPackage(this, 70, 0.85)">
-                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
-                <span class="coin-number">70</span>
-                <span class="coin-number-euro">€ 0.85</span>
-            </button>
-            <button class="grid-item" onclick="selectPackage(this, 350, 4.15)">
-                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
-                <span class="coin-number">350</span>
-                <span class="coin-number-euro">€ 4.15</span>
-            </button>
-            <button class="grid-item" onclick="selectPackage(this, 700, 8.29)">
-                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
-                <span class="coin-number">700</span>
-                <span class="coin-number-euro">€ 8.29</span>
-            </button>
-            <button class="grid-item" onclick="selectPackage(this, 1400, 16.49)">
-                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
-                <span class="coin-number">1,400</span>
-                <span class="coin-number-euro">€ 16.49</span>
-            </button>
-            <button class="grid-item" onclick="selectPackage(this, 3500, 41.25)">
-                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
-                <span class="coin-number">3,500</span>
-                <span class="coin-number-euro">€ 41.25</span>
-            </button>
-            <button class="grid-item" onclick="selectPackage(this, 7000, 82.09)">
-                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
-                <span class="coin-number">7,000</span>
-                <span class="coin-number-euro">€ 82.09</span>
-            </button>
-            <button class="grid-item" onclick="selectPackage(this, 17500, 205.19)">
-                <svg class="coin-image" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#FFAA00"/><circle cx="24" cy="24" r="16" fill="#FFC800"/><text x="24" y="29" font-size="16" font-weight="900" text-anchor="middle" fill="#B37400">d</text></svg>
-                <span class="coin-number">17,500</span>
-                <span class="coin-number-euro">€ 205.19</span>
-            </button>
-            <!-- CUSTOM COINS CARD -->
-            <button id="custom-case" class="grid-item" onclick="openCustomModal()">
-                <svg class="coin-image-perso" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#25F4EE"/><circle cx="24" cy="24" r="16" fill="#00C4BD"/><text x="24" y="29" font-size="20" font-weight="900" text-anchor="middle" fill="#005B58">+</text></svg>
-                <span id="custom-text" class="coin-number-perso">Custom</span>
-                <span id="custom-description" class="coin-number-euro-perso">Large amounts supported</span>
-            </button>
-        </div>
-
-        <div class="checkout-bar">
-            <div>
-                <span style="color: var(--text-sub); font-size: 14px;">Total Amount</span>
-                <div style="font-size: 28px; font-weight: 800;">€ <span id="total-amount">0.85</span></div>
-            </div>
-            <button class="recharger" onclick="openPaymentModal()">Recharge Now</button>
-        </div>
-    </div>
-
-    <!-- PAYMENT MODAL -->
-    <div class="modal-overlay" id="payment-modal">
-        <div class="popup-paiement">
-            <div class="resumer">
-                <span>Order Summary</span>
-                <button class="close-modal" onclick="closeModal('payment-modal')"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
-                <span style="color: var(--text-sub);">Target Account</span>
-                <span style="font-weight: 700;" id="modal-account-name">@tiktok</span>
-            </div>
-            
-            <div class="ligne"></div>
-            
-            <div class="piece">
-                <span id="coin-quantity-display">70 Coins</span>
-                <span id="coin-price-display" style="font-weight: 700;">€ 0.85</span>
-            </div> 
-            
-            <div class="prix">
-                <span>Total</span>
-                <span class="prix2" id="coin-price2-display">€ 0.85</span>
-            </div>
-
-            <div class="ligne"></div>
-
-            <!-- PAYPAL METHOD & DYNAMIC BALANCE DISPLAY -->
-            <div class="paypal-box">
-                <div class="paypal-left">
-                    <input type="radio" checked accent-color="#fe2c55">
-                    <i class="fa-brands fa-paypal" style="color: #0079C1; font-size: 22px;"></i>
-                    <div>
-                        <div style="font-weight: 700; font-size: 14px;">PayPal</div>
-                        <div style="font-size: 11px; color: var(--text-sub);">Primary Account</div>
-                    </div>
-                </div>
-                <div class="paypal-balance-badge" id="modal-paypal-balance-badge">
-                    Balance: $9,554,333.42
-                </div>
-            </div>
-
-            <div class="checkbox-container">
-                <input type="checkbox" id="accept-checkbox" onchange="togglePayButton()">
-                <label class="blabla" for="accept-checkbox">
-                    By checking this box, I accept the <b>Coins Policy</b> and request immediate delivery of Coins.
-                </label>
-            </div>
-
-            <button class="pay-button" id="btn-pay-now" disabled onclick="executePayment()">
-                <span class="spinner" id="pay-spinner"></span>
-                <span id="pay-text">Pay Now</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- CUSTOM COINS MODAL -->
-    <div class="modal-overlay" id="custom-modal">
-        <div class="popup-paiement">
-            <div class="resumer">
-                <span>Custom Coins Package</span>
-                <button class="close-modal" onclick="closeModal('custom-modal')"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">Enter the exact number of coins you would like to purchase (Min: 30).</p>
-            
-            <div class="custom-input-box">
-                <input type="number" id="custom-coin-input" placeholder="e.g. 5000" min="30" oninput="calculateCustomPrice()">
-                <div style="font-size: 14px; color: var(--text-sub);">
-                    Calculated Total: <b style="color: white;">€ <span id="custom-calculated-price">0.00</span></b>
-                </div>
-            </div>
-
-            <button class="pay-button" style="margin-top: 12px;" onclick="applyCustomCoins()">Confirm Custom Package</button>
-        </div>
-    </div>
-
-    <!-- SUCCESS MODAL -->
-    <div class="modal-overlay" id="success-modal">
-        <div class="popup-paiement" style="text-align: center;">
-            <i class="fa-solid fa-circle-check" style="font-size: 56px; color: #00e676; margin-bottom: 16px;"></i>
-            <h2 class="resumer" style="justify-content: center;">Payment Successful!</h2>
-            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 20px;">
-                Coins sent to <b style="color: white;" id="success-target-user">@tiktok</b>.<br>
-                Remaining PayPal Balance: <b style="color: #00e676;" id="success-remaining-balance">$9,554,333.42</b>
-            </p>
-            <button class="pay-button" onclick="closeModal('success-modal')">Done</button>
-        </div>
-    </div>
-
-    <div class="toast" id="toast-box">
-        <span id="toast-message">Notification</span>
-    </div>
-
-    <script>
-        // GLOBAL STATE & BALANCE INITIALIZATION
-        let currentBalance = 9554333.42;
-        let selectedCoins = 70;
-        let selectedPrice = 0.85;
-        let currentUsername = 'tiktok';
-        const ratePerCoin = 0.0118;
-        const eurToUsdRate = 1.08; // Currency conversion factor
-
-        function formatUSD(amount) {
-            return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
-
-        function renderBalanceUI() {
-            const formatted = formatUSD(currentBalance);
-            document.getElementById('home-paypal-balance').textContent = formatted;
-            document.getElementById('modal-paypal-balance-badge').textContent = `Balance: ${formatted}`;
-        }
-
-        // REAL TIKTOK AVATAR FETCHER
-        function updateTikTokAvatar(username) {
-            const cleanUser = username.replace(/^@/, '').trim();
-            if (!cleanUser) return;
-
-            const realAvatarUrl = `https://unavatar.io/tiktok/${cleanUser}`;
-            
-            document.getElementById('display-profile-pic').src = realAvatarUrl;
-            document.getElementById('nav-avatar').src = realAvatarUrl;
-            
-            currentUsername = cleanUser;
-            document.getElementById('account-handle-display').textContent = `@${cleanUser}`;
-            document.getElementById('modal-account-name').textContent = `@${cleanUser}`;
-        }
-
-        // VERIFY BUTTON ACTION
-        document.getElementById('btn-verify').addEventListener('click', () => {
-            const inputVal = document.getElementById('username-input').value;
-            const spinner = document.getElementById('verify-spinner');
-            const txt = document.getElementById('verify-text');
-
-            spinner.style.display = 'block';
-            txt.style.display = 'none';
-
-            setTimeout(() => {
-                updateTikTokAvatar(inputVal);
-                spinner.style.display = 'none';
-                txt.style.display = 'inline';
-                showToast(`Loaded profile for @${currentUsername}`);
-            }, 500);
-        });
-
-        function selectPackage(element, coins, price) {
-            document.querySelectorAll('.grid-item').forEach(el => el.classList.remove('selected'));
-            element.classList.add('selected');
-            selectedCoins = coins;
-            selectedPrice = price;
-            document.getElementById('total-amount').textContent = price.toFixed(2);
-        }
-
-        function openCustomModal() {
-            document.getElementById('custom-modal').classList.add('active');
-        }
-
-        function calculateCustomPrice() {
-            const coins = parseInt(document.getElementById('custom-coin-input').value) || 0;
-            const price = coins * ratePerCoin;
-            document.getElementById('custom-calculated-price').textContent = price.toFixed(2);
-        }
-
-        function applyCustomCoins() {
-            const coins = parseInt(document.getElementById('custom-coin-input').value);
-            if (!coins || coins < 30) {
-                showToast('Minimum custom purchase is 30 coins');
-                return;
-            }
-
-            const price = parseFloat((coins * ratePerCoin).toFixed(2));
-            selectedCoins = coins;
-            selectedPrice = price;
-
-            document.getElementById('total-amount').textContent = price.toFixed(2);
-            document.getElementById('custom-text').textContent = coins.toLocaleString();
-            document.getElementById('custom-description').textContent = `€ ${price.toFixed(2)}`;
-
-            document.querySelectorAll('.grid-item').forEach(el => el.classList.remove('selected'));
-            document.getElementById('custom-case').classList.add('selected');
-
-            closeModal('custom-modal');
-        }
-
-        function openPaymentModal() {
-            document.getElementById('coin-quantity-display').textContent = `${selectedCoins.toLocaleString()} Coins`;
-            document.getElementById('coin-price-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
-            document.getElementById('coin-price2-display').textContent = `€ ${selectedPrice.toFixed(2)}`;
-            renderBalanceUI();
-            document.getElementById('payment-modal').classList.add('active');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        function togglePayButton() {
-            const isChecked = document.getElementById('accept-checkbox').checked;
-            document.getElementById('btn-pay-now').disabled = !isChecked;
-        }
-
-        // EXECUTE PAYMENT AND DEDUCT BALANCE
-        function executePayment() {
-            const spinner = document.getElementById('pay-spinner');
-            const payText = document.getElementById('pay-text');
-            const btn = document.getElementById('btn-pay-now');
-
-            const costInUsd = selectedPrice * eurToUsdRate;
-
-            if (currentBalance < costInUsd) {
-                showToast('Insufficient PayPal balance');
-                return;
-            }
-
-            btn.disabled = true;
-            spinner.style.display = 'block';
-            payText.style.display = 'none';
-
-            setTimeout(() => {
-                // Deduct cost from global balance
-                currentBalance -= costInUsd;
-                renderBalanceUI();
-
-                spinner.style.display = 'none';
-                payText.style.display = 'inline';
-                btn.disabled = false;
-                
-                closeModal('payment-modal');
-
-                // Update Success Screen
-                document.getElementById('success-target-user').textContent = `@${currentUsername}`;
-                document.getElementById('success-remaining-balance').textContent = formatUSD(currentBalance);
-                document.getElementById('success-modal').classList.add('active');
-            }, 1200);
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast-box');
-            document.getElementById('toast-message').textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
-        }
-
-        // Initialize display
-        renderBalanceUI();
-    </script>
 </body>
 </html>
